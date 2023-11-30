@@ -11,7 +11,7 @@ import sys
 
 class client:
     
-    verbose = False
+    verbose = True
     req_rep = True
     number_of_frames_in_chunk = 100
     max_buffer = 4000

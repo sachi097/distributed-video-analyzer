@@ -6,7 +6,7 @@ import sys
 
 class coordinator:
     
-    verbose = False
+    verbose = True
     req_rep = True
     my_ip = 'localhost:9999'
     max_buffer = 40
