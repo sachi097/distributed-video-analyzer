@@ -8,10 +8,6 @@ each of those individual frames. Once the processing is done on the frames, they
 back in a way that the original frame order is maintained. Thus, we get the required video with
 all the objects and their number highlighted.
 
-# Report and Demo Video
-A more detailed report about the Project can be viewed at : [Project_Report](Project_Report.pdf)
-
-Video explanation of the Project along with the Demo can be viewed at [Video_Explanation](Video_Explanation.mp4)
 
 # Steps to run the Project
 
