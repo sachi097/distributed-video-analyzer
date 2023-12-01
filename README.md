@@ -1,6 +1,6 @@
 # Cloud-based-Distributed-Video-Processing-for-Object-Detection
 
-This project was done as part of the course CSCI 5253 : Datacenter Scale Computing offered at CU Boulder. The aim of this Project was to create a distributed processing of video frames for object detection using a pre-trained DNN. By inputting a video into the system, we
+This project is done as part of the course CSCI 5253 : Datacenter Scale Computing offered at CU Boulder. The aim of this Project was to create a distributed processing of video frames for object detection using a pre-trained DNN. By inputting a video into the system, we
 will essentially get back a similar video with different objects highlighted and also their count in a
 particular frame. These objects could be cars, people or any other object supported by the
 pre-trained DNN. This will happen by splitting up the video into individual frames and processing
