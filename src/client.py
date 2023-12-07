@@ -217,8 +217,6 @@ class client:
                         self.log("processed frame : "+str(frame_number))
                         if self.final_sent_frame==frame_number:
                             print("final frame time taken for the job = "+str(time.time()-self.start_time))
-                            print("221")
-                            self.exit_threads()
                             if self.out!=None:
                                 self.out.release()
                     elif frame_number>self.curr_frame:
@@ -234,8 +232,6 @@ class client:
                                 self.frame_buffer.remove((number,frame_i))
                                 if self.final_sent_frame==number:
                                     print("final frame time taken for the job = "+str(time.time()-self.start_time))
-                                    print("236")
-                                    self.exit_threads()
                                     if self.out!=None:
                                         self.out.release()
                                 written = True
@@ -322,13 +318,24 @@ class client:
         
     def exit_threads(self):
         i=0
+        while True:
+            # Send data
+            print('sending message trial '+str(i)+'...')
+            i+=1
+            self.send_sock.sendto(("end||"+self.my_ip).encode('utf-8'), self.server_address)
+            print('waiting to receive...')
+            ready = select.select([self.send_sock], [], [], 10)
+            if ready[0]:
+                data, server = self.send_sock.recvfrom(4096)
+                data = data.decode('utf-8')
+                if data=="ok":
+                    break
         self.continue_requesting = False
         self.continue_procesing = False
         self.continue_sending = False
         self.continue_receiving = False
         if self.out!=None:
             self.out.release()
-        exit(0)
         
 if __name__=='__main__':
     if len(sys.argv)>1:
