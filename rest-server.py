@@ -36,7 +36,7 @@ def uploadVideo():
     try:
         fileName = content['fileName']
         video_data = content['video']
-        console.log(video_data)
+        print(video_data)
         blob = bucket.blob(fileName)
         blob.upload_from_file(video_data)
         blob.make_public()
