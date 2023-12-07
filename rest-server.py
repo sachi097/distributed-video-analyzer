@@ -3,7 +3,7 @@ import jsonpickle
 import json
 import os
 from io import BytesIO
-import base64
+import base64, re
 from flask import Flask, request, Response, send_file
 from flask_cors import CORS, cross_origin
 from google.cloud import storage
@@ -37,9 +37,13 @@ def uploadVideo():
     try:
         fileName = content['fileName']
         video_data = content['video']
-        print(video_data)
+        print(fileName)
+        regex = r"(?<=data:)(.*)(?=;)"
+        split = image.split('base64')
+        format_image = re.findall(regex, split[0])[0]
+        base64_image = base64.b64decode(split[1])
         blob = bucket.blob(fileName)
-        blob.upload_from_file(video_data)
+        blob.upload_from_string(video_data)
         blob.make_public()
         response={
             'videoUrl': 'https://storage.googleapis.com/'+bucket_name+'/'+fileName
