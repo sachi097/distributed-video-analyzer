@@ -33,11 +33,9 @@ def hello():
 @cross_origin()
 def uploadVideo():
     content = request.get_json()
-    print(content)
     try:
         fileName = content['fileName']
         video_data = content['video']
-        print(fileName)
         regex = r"(?<=data:)(.*)(?=;)"
         split = video_data.split('base64')
         format_video = re.findall(regex, split[0])[0]
