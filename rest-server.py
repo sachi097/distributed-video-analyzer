@@ -124,4 +124,4 @@ def deleteFromRedisAndMinIO(hashVal):
     response_pickled = jsonpickle.encode(response)
     return Response(response=response_pickled, status=200, mimetype='application/json')
 
-app.run(host='10.138.0.16', port=9999)
+app.run(host='0.0.0.0', port=9999)
