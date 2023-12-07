@@ -218,6 +218,7 @@ class client:
                         if self.final_sent_frame==frame_number:
                             print("final frame time taken for the job = "+str(time.time()-self.start_time))
                             self.exit_threads()
+                            print("221")
                             if self.out!=None:
                                 self.out.release()
                     elif frame_number>self.curr_frame:
@@ -233,6 +234,7 @@ class client:
                                 self.frame_buffer.remove((number,frame_i))
                                 if self.final_sent_frame==number:
                                     print("final frame time taken for the job = "+str(time.time()-self.start_time))
+                                    print("236")
                                     self.exit_threads()
                                     if self.out!=None:
                                         self.out.release()
