@@ -33,7 +33,8 @@ def hello():
 @cross_origin()
 def uploadVideo():
     try:
-        video_data = request.form.getlist('file')[0]
+        video_data = request.form.getlist('file')
+        print(video_data)
         fileName = request.form.get('fileName')
         print(video_data)
         blob = bucket.blob(fileName)
