@@ -51,20 +51,21 @@ def uploadVideo():
     except Exception as e:
         print(e)
 
-@app.route('/queue', methods=['GET'])
+@app.route('/processVideo', methods=['POST'])
+@cross_origin()
 def get_from_queue():
-    length = redisQueue.llen('toWorker')
-    queue = []
-    for x in range(0,length):
-        print(redisQueue.lindex('toWorker',x).decode())
-        queue.append(redisQueue.lindex('toWorker',x).decode())
-
-    response={
-        'queue': queue
-    }
-
-    response_pickled = jsonpickle.encode(response)
-    return Response(response=response_pickled, status=200, mimetype='application/json')
+    content = request.get_json()
+    try:
+        originalVideoUrl = content['originalVideoUrl']
+        os.chdir('./src')
+        os.system('python3 client.py 10.138.0.10 10.138.0.16 '+originalVideoUrl)
+        response={
+            'processedVideoUrl': 'https://storage.googleapis.com/'+bucket_name+'/processVideo.mp4'
+        }
+        response_pickled = jsonpickle.encode(response)
+        return Response(response=response_pickled, status=200, mimetype='application/json')
+    except Exception as e:
+        print(e)
 
 @app.route('/track/<path:hashVal>/<path:audio>', methods=['GET'])
 def download_tack_file(hashVal, audio):
