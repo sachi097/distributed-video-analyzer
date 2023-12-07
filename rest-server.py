@@ -32,10 +32,11 @@ def hello():
 @app.route('/uploadVideo', methods=['POST'])
 @cross_origin()
 def uploadVideo():
+    content = request.get_json()
+    print(content)
     try:
-        video_data = request.form.getlist('file')
-        print(video_data)
-        fileName = request.form.get('fileName')
+        # fileName = content['fileName']
+        video_data = content['file']
         print(video_data)
         blob = bucket.blob(fileName)
         blob.upload_from_file(video_data)
