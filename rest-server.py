@@ -37,7 +37,7 @@ def uploadVideo():
         blob.upload_from_file(video_data)
         blob.make_public()
         response={
-            'videoUrl': 'https://storage.googleapis.com/'+bucket_name+'/'fileName
+            'videoUrl': 'https://storage.googleapis.com/'+bucket_name+'/'+fileName
         }
         response_pickled = jsonpickle.encode(response)
         return Response(response=response_pickled, status=200, mimetype="application/json")
