@@ -39,11 +39,11 @@ def uploadVideo():
         video_data = content['video']
         print(fileName)
         regex = r"(?<=data:)(.*)(?=;)"
-        split = image.split('base64')
-        format_image = re.findall(regex, split[0])[0]
-        base64_image = base64.b64decode(split[1])
+        split = video_data.split('base64')
+        format_video = re.findall(regex, split[0])[0]
+        base64_video = base64.b64decode(split[1])
         blob = bucket.blob(fileName)
-        blob.upload_from_string(video_data)
+        blob.upload_from_string(base64_video, content_type=format_video)
         blob.make_public()
         response={
             'videoUrl': 'https://storage.googleapis.com/'+bucket_name+'/'+fileName
