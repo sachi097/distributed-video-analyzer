@@ -5,6 +5,7 @@ import os
 from io import BytesIO
 import base64
 from flask import Flask, request, Response, send_file
+from flask_cors import CORS, cross_origin
 from google.cloud import storage
 from datetime import timedelta
 
@@ -20,6 +21,8 @@ bucket = client.get_bucket(bucket_name)
 
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # Added this for health checking
 @app.route('/', methods=['GET'])
@@ -27,6 +30,7 @@ def hello():
     return 'Added this, for health checking'
 # When the Music filename is provided for separation
 @app.route('/uploadVideo', methods=['POST'])
+@cross_origin()
 def uploadVideo():
     content = request.get_json()
     try:
