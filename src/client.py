@@ -217,8 +217,8 @@ class client:
                         self.log("processed frame : "+str(frame_number))
                         if self.final_sent_frame==frame_number:
                             print("final frame time taken for the job = "+str(time.time()-self.start_time))
-                            self.exit_threads()
                             print("221")
+                            self.exit_threads()
                             if self.out!=None:
                                 self.out.release()
                     elif frame_number>self.curr_frame:
