@@ -35,8 +35,8 @@ def uploadVideo():
     content = request.get_json()
     print(content)
     try:
-        # fileName = content['fileName']
-        video_data = content['file']
+        fileName = content['fileName']
+        video_data = content['video']
         print(video_data)
         blob = bucket.blob(fileName)
         blob.upload_from_file(video_data)
