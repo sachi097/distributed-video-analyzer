@@ -11,7 +11,6 @@ from google.cloud import storage
 project_id = 'dcsc-project-vidzslayers' 
 bucket_name = 'dcsc-project-bucket1'
 service_account = os.path.basename('/service-account.json')
-print(service_account)
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= service_account
 
 client = storage.Client(project_id)
