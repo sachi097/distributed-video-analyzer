@@ -58,7 +58,7 @@ def get_from_queue():
         originalVideoUrl = content['originalVideoUrl']
         os.system('python3 client.py 10.138.0.10 10.138.0.16 '+originalVideoUrl)
         response={
-            'status': 'success'
+            'processedVideoUrl':'https://storage.googleapis.com/'+bucket_name+'/processedVideo.mp4'
         }
         response_pickled = jsonpickle.encode(response)
         return Response(response=response_pickled, status=200, mimetype='application/json')

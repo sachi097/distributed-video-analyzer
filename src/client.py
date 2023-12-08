@@ -21,9 +21,6 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= service_account
 client = storage.Client(project_id)
 # Create a bucket object for our bucket
 bucket = client.get_bucket(bucket_name)
-blob = bucket.blob("processedVideo.mp4")
-blob.upload_from_filename("video0.mp4")
-blob.make_public()
 
 
 class client:
@@ -234,7 +231,6 @@ class client:
                         self.log("processed frame : "+str(frame_number))
                         if self.final_sent_frame==frame_number:
                             print("final frame time taken for the job = "+str(time.time()-self.start_time))
-                            self.stop_requesting_thread()
                             self.exit_threads()
                     elif frame_number>self.curr_frame:
                         self.frame_buffer.append((frame_number,frame))
@@ -354,8 +350,10 @@ class client:
         if self.out!=None:
             self.out.release()
         print("Exiting the process")
-        signal.SIGINT
-        signal.CTRL_C_EVENT
+        blob = bucket.blob("processedVideo.mp4")
+        with open('video0.mp4', 'rb') as vid:
+            blob.upload_from_file(vid)
+        blob.make_public()
         exit(0)
         
 if __name__=='__main__':
