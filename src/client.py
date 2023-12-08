@@ -21,6 +21,9 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= service_account
 client = storage.Client(project_id)
 # Create a bucket object for our bucket
 bucket = client.get_bucket(bucket_name)
+blob = bucket.blob("processedVideo.mp4")
+blob.upload_from_filename("video0.mp4")
+blob.make_public()
 
 
 class client:
@@ -350,9 +353,6 @@ class client:
         self.continue_receiving = False
         if self.out!=None:
             self.out.release()
-        blob = bucket.blob("processedVideo.mp4")
-        blob.upload_from_filename("video0.mp4")
-        blob.make_public()
         print("Exiting the process")
         signal.SIGINT
         signal.CTRL_C_EVENT
