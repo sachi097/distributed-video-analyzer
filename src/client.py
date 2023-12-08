@@ -8,6 +8,18 @@ import time
 import threading
 from PIL import Image
 import sys
+from google.cloud import storage
+
+project_id = 'dcsc-project-vidzslayers' 
+bucket_name = 'dcsc-project-bucket1'
+service_account = os.path.basename('/service-account.json')
+print(service_account)
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= service_account
+
+client = storage.Client(project_id)
+# Create a bucket object for our bucket
+bucket = client.get_bucket(bucket_name)
+
 
 class client:
     
@@ -217,8 +229,11 @@ class client:
                         self.log("processed frame : "+str(frame_number))
                         if self.final_sent_frame==frame_number:
                             print("final frame time taken for the job = "+str(time.time()-self.start_time))
-                            if self.out!=None:
-                                self.out.release()
+                            blob = bucket.blob("processedVideo.mp4")
+                            blob.upload_from_filename("video0.mp4")
+                            blob.make_public()
+                            self.stop_requesting_thread()
+                            self.exit_threads()
                     elif frame_number>self.curr_frame:
                         self.frame_buffer.append((frame_number,frame))
                         
@@ -336,6 +351,8 @@ class client:
         self.continue_receiving = False
         if self.out!=None:
             self.out.release()
+        print("Exiting the process")
+        exit(0)
         
 if __name__=='__main__':
     if len(sys.argv)>1:
@@ -343,4 +360,5 @@ if __name__=='__main__':
     else:
         w = client()
     
+    print("Starting the process")
     w.become_requester(sys.argv[3])
