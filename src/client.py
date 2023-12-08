@@ -1,5 +1,6 @@
 import numpy as np
 import os
+import signal
 import imagezmq
 import imutils
 import cv2
@@ -230,9 +231,6 @@ class client:
                         self.log("processed frame : "+str(frame_number))
                         if self.final_sent_frame==frame_number:
                             print("final frame time taken for the job = "+str(time.time()-self.start_time))
-                            blob = bucket.blob("processedVideo.mp4")
-                            blob.upload_from_filename("video0.mp4")
-                            blob.make_public()
                             self.stop_requesting_thread()
                             self.exit_threads()
                     elif frame_number>self.curr_frame:
@@ -352,7 +350,12 @@ class client:
         self.continue_receiving = False
         if self.out!=None:
             self.out.release()
+        blob = bucket.blob("processedVideo.mp4")
+        blob.upload_from_filename("video0.mp4")
+        blob.make_public()
         print("Exiting the process")
+        signal.SIGINT
+        signal.CTRL_C_EVENT
         exit(0)
         
 if __name__=='__main__':
