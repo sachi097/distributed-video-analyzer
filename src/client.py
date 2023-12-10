@@ -119,7 +119,7 @@ class client:
         ret, frame = vs.read()
         width=400
         height=int((frame.shape[0]*width)/frame.shape[1])
-        VideoWriter_fourcc = cv2.VideoWriter_fourcc(*'avc1')
+        VideoWriter_fourcc = cv2.VideoWriter_fourcc(*'avc1') #if you want other video codecs then change here
         self.out = cv2.VideoWriter(self.path_out, VideoWriter_fourcc, 30, (width,height))
         
         ret, frame = vs.read()
