@@ -25,7 +25,7 @@ def create_instance(compute, project, zone, instance_type, name, bucket):
     machine_type = "zones/%s/machineTypes/%s" % (zone, instance_type)
     startup_script = open(
         os.path.join(
-            os.path.dirname(__file__), 'startup-script.sh'), 'r').read()
+            os.path.dirname(__file__), 'startup_script.sh'), 'r').read()
     config = {
         'name': name,
         'machineType': machine_type,
