@@ -350,8 +350,7 @@ class client:
             self.out.release()
         print("Exiting the process")
         blob = bucket.blob("processedVideo.mp4")
-        with open('video0.mp4', 'rb') as vid:
-            blob.upload_from_file(vid)
+        blob.upload_from_filename("video0.mp4")
         blob.make_public()
         exit(0)
         

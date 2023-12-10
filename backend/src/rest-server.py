@@ -55,7 +55,7 @@ def get_from_queue():
     content = request.get_json()
     try:
         originalVideoUrl = content['originalVideoUrl']
-        os.system('python3 client.py 10.138.0.10 10.138.0.16 '+originalVideoUrl)
+        os.system('python3 client.py 10.138.0.10 10.138.0.16 '+originalVideoUrl) # change ip addresses based on the ip address of master node and client node
         response={
             'processedVideoUrl':'https://storage.googleapis.com/'+bucket_name+'/processedVideo.mp4'
         }
@@ -64,4 +64,9 @@ def get_from_queue():
     except Exception as e:
         print(e)
 
+blob = bucket.blob("p.mp4")
+        # with open('video0.mp4', 'rb') as vid:
+        #     blob.upload_from_file(vid)
+blob.upload_from_filename("video0.mp4")
+blob.make_public()
 app.run(host='0.0.0.0', port=9999)
