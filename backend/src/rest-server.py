@@ -64,9 +64,4 @@ def get_from_queue():
     except Exception as e:
         print(e)
 
-blob = bucket.blob("p.mp4")
-        # with open('video0.mp4', 'rb') as vid:
-        #     blob.upload_from_file(vid)
-blob.upload_from_filename("video0.mp4")
-blob.make_public()
 app.run(host='0.0.0.0', port=9999)
