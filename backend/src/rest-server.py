@@ -55,7 +55,7 @@ def get_from_queue():
     content = request.get_json()
     try:
         originalVideoUrl = content['originalVideoUrl']
-        os.system('python3 client.py 10.138.0.10 10.138.0.16 '+originalVideoUrl) # change ip addresses based on the ip address of master node and client node
+        os.system('python3 client.py 10.138.0.20 10.138.0.21 '+originalVideoUrl) # change ip addresses based on the ip address of master node and client node
         response={
             'processedVideoUrl':'https://storage.googleapis.com/'+bucket_name+'/processedVideo.mp4'
         }
