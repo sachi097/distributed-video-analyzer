@@ -1,20 +1,19 @@
 # Analysis of Video in Distributed Environment for Object Detection
 
-This project was done as part of the course CSCI 5253 : Datacenter Scale Computing offered at CU Boulder (Fall 2023). The aim of this Project was to create a distributed processing of video frames for object detection using a pre-trained DNN. By inputting a video into the system, we will essentially get back a similar video with different objects highlighted and also their count in a particular frame. These objects could be cars, people or any other object supported by the pre-trained DNN. This will happen by splitting up the video into individual frames and processing
-each of those individual frames. Once the processing is done on the frames, they are merged back in a way that the original frame order is maintained. Thus, we get the required video with
-all the objects and their number highlighted.
+As part of the CSCI 5253: Datacenter Scale Computing course at the University of Colorado, Boulder (Fall 2023), our project focused on implementing a distributed video frame processing system for Object detection using a pre-trained Deep Neural Network (DNN). The objective was to input a video into the system and receive an output video where various objects are highlighted, along with their count in each frame where the objects can be cars,people or any other object supported by pre-trained DNN.This was achieved by dividing the video into individual frames, independently processing each frame for object detection using the pre-trained DNN, and then merging the frames while maintaining the original order. The outcome is a modified video with highlighted objects and their respective counts. The project leverages distributed processing for scalability and efficiency, contributing to the intersection of datacenter scale computing, deep learning, and video analytics.
 
+For this project we have configured pre-trained DNN to detect humans.
 
 # Steps to run the Project
 
 This project contains
 
 ```
--frontend
- -react_app
 -backend
  -gcp_instance_creation
  -src
+-frontend
+ -vidzslayers
 ```
 
 # Instructions on setting up backend
@@ -45,19 +44,26 @@ python3 rest-server.py
 ```
 
 # Instructions on setting up frontend
+Step 1
+```
+cd frontend
+cd vidzslayers
+npm install
+npm start
+```
 
 # Instructions on using system without frontend
 
---server.py - run server for distribution and management. Provide the ip address of the server as a command line argument. For example look "At master node" section
+--server.py - run server for distribution and management. Provide the ip address of the server as a command line argument. For example look "At master node" section above
 
---worker.py - run client nodes on user devices. Provide ip addresses of server and the client as a command line argument in that order. For example look "At worker node" section
+--worker.py - run client nodes on user devices. Provide ip addresses of server and the client as a command line argument in that order. For example look "At worker node" section above
 
 Every client starts as a worker. When the user needs to request processing, type request in the terminal. When you want to finish processing(in case of live stream) type end in the terminal. Type quit to leave.
 
 Commands on client node:
 
 1. request live --> for requesting live stream processing
-2. request path-to-video --> for requesting video stream processing
+2. request url-path-to-video --> for requesting video stream processing
 3. end --> to stop processing
 4. quit --> to leave
 
@@ -66,3 +72,4 @@ Commands on server node:
 1. quit --> to leave
 
 # Team - VidzSlayers
+Members: Anirudh Prashant Kalghatkar and Sachin Kashinath Rathod
