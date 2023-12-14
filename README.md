@@ -3,6 +3,9 @@
 # Team - VidzSlayers
 Members: Anirudh Prashant Kalghatkar and Sachin Kashinath Rathod
 
+# Video Explanation
+[Video - Analysis of Video in Distributed Environment for Object Detection](https://drive.google.com/file/d/1IxoJAZESDcj8YCw4uFTVuRT-HmayR6_Z/view?usp=sharing)
+
 # Analysis of Video in Distributed Environment for Object Detection
 
 As part of the CSCI 5253: Datacenter Scale Computing course at the University of Colorado, Boulder (Fall 2023), our project focused on implementing a distributed video frame processing system for Object detection using a pre-trained Deep Neural Network (DNN). The objective was to input a video into the system and receive an output video where various objects are highlighted, along with their count in each frame where the objects can be cars,people or any other object supported by pre-trained DNN.This was achieved by dividing the video into individual frames, independently processing each frame for object detection using the pre-trained DNN, and then merging the frames while maintaining the original order. The outcome is a modified video with highlighted objects and their respective counts. The project leverages distributed processing for scalability and efficiency, contributing to the intersection of datacenter scale computing, deep learning, and video analytics.
