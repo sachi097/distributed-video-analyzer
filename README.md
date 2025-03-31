@@ -1,8 +1,5 @@
 # Final Project Repository
 
-# Team - VidzSlayers
-Members: Anirudh Prashant Kalghatkar and Sachin Kashinath Rathod
-
 # Video Explanation
 [Video - Analysis of Video in Distributed Environment for Object Detection](https://drive.google.com/file/d/1IxoJAZESDcj8YCw4uFTVuRT-HmayR6_Z/view?usp=sharing)
 
